@@ -26,7 +26,8 @@ public static class Report
                 y: y,
                 z: z,
                 mode: StyleParam.Mode.Markers,
-                Name: $"Cluster {i + 1}"
+                Name: $"Cluster {i + 1}",
+                MultiText: cluster.Select(x => x.classDeclaration.Identifier.Text).ToArray()
             );
 
             scatterPlots.Add(scatter);
@@ -80,7 +81,8 @@ public static class Report
                 x: x,
                 y: y,
                 mode: StyleParam.Mode.Markers,
-                Name: $"Cluster {clusters.IndexOf(cluster) + 1}"
+                Name: $"Cluster {clusters.IndexOf(cluster) + 1}",
+                MultiText: cluster.Select(x => x.classDeclaration.Identifier.Text).ToArray()
             );
 
             scatterPlots.Add(scatter);

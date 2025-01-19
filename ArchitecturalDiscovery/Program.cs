@@ -28,16 +28,16 @@ static class Program
         var referencedClasses = analyzer.GetReferencedClasses();
         
 
-        var clusterizer = new Clusterizer(result, referencedClasses);
+        var clusterizer = new Clusterizer(result, referencedClasses, [1.5, 1.0, 2.0]);
         
         var clusters3D = clusterizer.Clusterize3D();
-        var clusters2D = clusterizer.Clusterize2D();
+        // var clusters2D = clusterizer.Clusterize2D();
 
-        var architectureRecovery = new ArchitectureRecovery(clusters2D);
+        var architectureRecovery = new ArchitectureRecovery(clusters3D);
         var architecture = architectureRecovery.RecoverArchitecture();
         
         Report.PlotClusters3D(clusters3D);
-        Report.PlotClusters2D(clusters2D);
+        Report.PlotClusters2D(clusters3D);
         Report.PlotGraph(architecture);
     }
 

@@ -40,7 +40,7 @@ public class Analyzer(Project msProject)
             var scaledCalledFunctions = MinMaxScaler.Transform(entity.calledFunctions, fitCalledFunctions.min, fitCalledFunctions.max);
             var scaledAccessedGlobalVariables = MinMaxScaler.Transform(entity.accessedGlobalVariables, fitAccessedGlobalVariables.min, fitAccessedGlobalVariables.max);
             var scaledUserDefinedTypes = MinMaxScaler.Transform(entity.userDefinedTypes, fitUserDefinedTypes.min, fitUserDefinedTypes.max);
-            entity.FitFeatures(scaledCalledFunctions, scaledAccessedGlobalVariables, scaledUserDefinedTypes, [1.5, 1.0, 2.0]);
+            entity.FitFeatures(scaledCalledFunctions, scaledAccessedGlobalVariables, scaledUserDefinedTypes);
         });
         
         return _entities.ToList();

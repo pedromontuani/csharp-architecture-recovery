@@ -22,15 +22,15 @@ public class Entity
         this.userDefinedTypes = userDefinedTypes;
     }
     
-    public void FitFeatures(double[] functions, double[] globalVariables, double[] definedTypes, double[] weights)
+    public void FitFeatures(double[] functions, double[] globalVariables, double[] definedTypes)
     {
         this.calledFunctions = functions;
         this.accessedGlobalVariables = globalVariables;
         this.userDefinedTypes = definedTypes;
         
-        double functionsAverage = (functions.Length > 0 ? functions.Sum() : 0) * weights[0];
-        double globalVariablesAverage = (globalVariables.Length > 0 ? globalVariables.Sum() : 0) * weights[1];
-        double definedTypesAverage = (definedTypes.Length > 0 ? definedTypes.Sum() : 0) * weights[2];
+        double functionsAverage = (functions.Length > 0 ? functions.Sum() : 0);
+        double globalVariablesAverage = (globalVariables.Length > 0 ? globalVariables.Sum() : 0);
+        double definedTypesAverage = (definedTypes.Length > 0 ? definedTypes.Sum() : 0);
 
         featuresTuple = new FeaturesTuple(functionsAverage, globalVariablesAverage, definedTypesAverage);
         var reduction = PCAHelper.ReducePoint([functionsAverage, globalVariablesAverage, definedTypesAverage]);

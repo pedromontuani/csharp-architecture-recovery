@@ -3,7 +3,7 @@ using ArchiteturalDiscovery.dto;
 
 namespace ArchiteturalDiscovery.core;
 
-public class Clusterizer(List<Entity> entities, Dictionary<string, int> referencedClasses)
+public class Clusterizer(List<Entity> entities, Dictionary<string, int> referencedClasses, double[] weights)
 {
     private List<Entity> _entities = entities;
     
@@ -41,8 +41,8 @@ public class Clusterizer(List<Entity> entities, Dictionary<string, int> referenc
         }).ToArray();
         
         
-        int optimalK = _elbowMethod.FindOptimalK(data, 10); // Assuming maxK is 10
-        return _kmeans.Clusterize(data, Math.Max(optimalK, 3));
+        int optimalK = _elbowMethod.FindOptimalK(data, 10, weights); // Assuming maxK is 10
+        return _kmeans.Clusterize(data, Math.Max(optimalK, 3), weights);
     }
     
     private List<int>[] GetClusters2D()
@@ -59,8 +59,8 @@ public class Clusterizer(List<Entity> entities, Dictionary<string, int> referenc
         }).ToArray();
         
         
-        int optimalK = _elbowMethod.FindOptimalK(data, 10); // Assuming maxK is 10
-        return _kmeans.Clusterize(data, Math.Max(optimalK, 3));
+        int optimalK = _elbowMethod.FindOptimalK(data, 10, weights); // Assuming maxK is 10
+        return _kmeans.Clusterize(data, Math.Max(optimalK, 3), weights);
     }
     
 

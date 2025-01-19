@@ -2,14 +2,14 @@ namespace ArchiteturalDiscovery.core;
 
     public class ElbowMethod
     {
-        public int FindOptimalK(double[][] data, int maxK)
+        public int FindOptimalK(double[][] data, int maxK, double[] weights)
         {
             var distortions = new List<double>();
             var kmeans = new WeightedKmeans();
 
             for (int k = 1; k <= maxK; k++)
             {
-                var clusters = kmeans.Clusterize(data, k);
+                var clusters = kmeans.Clusterize(data, k, weights);
                 var distortion = CalculateDistortion(data, clusters);
                 distortions.Add(distortion);
             }

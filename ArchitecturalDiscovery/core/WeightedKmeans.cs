@@ -6,7 +6,7 @@ namespace ArchiteturalDiscovery.core;
 
 public class WeightedKmeans
     {
-        public List<int>[] Clusterize(double[][] data, int k)
+        public List<int>[] Clusterize(double[][] data, int k, double[] weights)
         {
             int n = data.Length;
             int dimensions = data[0].Length;
@@ -33,7 +33,7 @@ public class WeightedKmeans
                     double minDistance = double.MaxValue;
                     for (int j = 0; j < k; j++)
                     {
-                        double distance = EuclideanDistance(data[i], centroids[j]);
+                        double distance = EuclideanDistance(data[i], centroids[j], weights);
                         if (distance < minDistance)
                         {
                             minDistance = distance;
@@ -69,12 +69,12 @@ public class WeightedKmeans
             return clusters;
         }
 
-        private double EuclideanDistance(double[] point1, double[] point2)
+        private double EuclideanDistance(double[] point1, double[] point2, double[] weights)
         {
             double sum = 0.0;
             for (int i = 0; i < point1.Length; i++)
             {
-                sum += Math.Pow(point1[i] - point2[i], 2);
+                sum += Math.Pow(point1[i] - point2[i], 2) * weights[i];
             }
             return Math.Sqrt(sum);
         }

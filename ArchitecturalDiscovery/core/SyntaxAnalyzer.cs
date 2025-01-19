@@ -80,4 +80,54 @@ public static class SyntaxAnalyzer
         return userDefinedTypes;
     }
     
+    public static IEnumerable<INamedTypeSymbol> GetExplicitlyReferencedClasses(MethodDeclarationSyntax methodDeclaration, SemanticModel semanticModel)
+    {
+        var referencedClasses = new HashSet<INamedTypeSymbol>(SymbolEqualityComparer.Default);
+
+        var nodes = methodDeclaration.DescendantNodes();
+        foreach (var node in nodes)
+        {
+            var symbolInfo = semanticModel.GetSymbolInfo(node);
+            if (symbolInfo.Symbol is ITypeSymbol typeSymbol && typeSymbol.TypeKind == TypeKind.Class)
+            {
+                referencedClasses.Add((INamedTypeSymbol)typeSymbol);
+            }
+        }
+
+        return referencedClasses;
+    }
+    
+    public static IEnumerable<IMethodSymbol> GetCalledMethods(MethodDeclarationSyntax methodDeclaration, SemanticModel semanticModel)
+    {
+        var calledMethods = new List<IMethodSymbol>();
+
+        var invocationExpressions = methodDeclaration.DescendantNodes().OfType<InvocationExpressionSyntax>();
+        foreach (var invocation in invocationExpressions)
+        {
+            var symbolInfo = semanticModel.GetSymbolInfo(invocation);
+            if (symbolInfo.Symbol is IMethodSymbol methodSymbol)
+            {
+                calledMethods.Add(methodSymbol);
+            }
+        }
+
+        return calledMethods;
+    }
+    
+    public static string GetPackageName(ClassDeclarationSyntax classDeclaration)
+    {
+        var parent = classDeclaration.Parent;
+        while (parent != null && !(parent is NamespaceDeclarationSyntax))
+        {
+            parent = parent.Parent;
+        }
+
+        if (parent is NamespaceDeclarationSyntax namespaceDeclaration)
+        {
+            return namespaceDeclaration.Name.ToString();
+        }
+
+        return string.Empty;
+    }
+    
 }

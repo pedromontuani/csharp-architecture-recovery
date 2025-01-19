@@ -7,4 +7,24 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="GraphSharp" Version="1.1.0" />
+      <PackageReference Include="Graphviz" Version="2.38.0.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Build.Locator" Version="1.7.8" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.12.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.12.0" />
+      <PackageReference Include="Plotly.NET" Version="5.1.0" />
+      <PackageReference Include="Plotly.NET.CSharp" Version="0.13.0" />
+      <PackageReference Include="QuickGraph" Version="3.6.61119.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="output\" />
+    </ItemGroup>
+
 </Project>

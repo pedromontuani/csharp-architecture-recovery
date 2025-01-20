@@ -38,7 +38,7 @@ static class Program
         
         Report.PlotClusters3D(clusters3D);
         Report.PlotClusters2D(clusters3D);
-        Report.PlotGraph(architecture);
+        Report.PlotGraph(clusters3D, architecture);
     }
 
     private static void CheckArgs(string[] args)

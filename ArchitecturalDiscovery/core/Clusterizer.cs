@@ -71,7 +71,7 @@ public class Clusterizer(List<Entity> entities, Dictionary<string, int> referenc
 
         Parallel.ForEach(referencedClasses, kvp =>
         {
-            if (kvp.Value > classesCount / 3)
+            if (kvp.Value > classesCount * 0.2)
             {
                 var entity = _entities.Find(e => e.classDeclaration.Identifier.Text.Equals(kvp.Key));
                 if (entity != null)

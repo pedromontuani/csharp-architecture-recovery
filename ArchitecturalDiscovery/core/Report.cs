@@ -56,9 +56,12 @@ public static class Report
         Layout layout = new Layout();
         layout.SetValue("xaxis", xAxis);
         layout.SetValue("yaxis", yAxis);
+        layout.SetValue("zaxis", zAxis);
         layout.SetValue("title", "Architectural Clusters");
         layout.SetValue("plot_bgcolor", "#e5ecf6");
         layout.SetValue("showlegend", true);
+        layout.SetValue("width", 900);
+        layout.SetValue("height", 720);
 
         var chart = Chart.Combine(scatterPlots);
         chart.WithLayout(layout);
@@ -88,14 +91,14 @@ public static class Report
         }
         
         LinearAxis xAxis = new LinearAxis();
-        xAxis.SetValue("title", "Global variables referenced");
+        xAxis.SetValue("title", "");
         xAxis.SetValue("zerolinecolor", "#ffff");
         xAxis.SetValue("gridcolor", "#ffff");
         xAxis.SetValue("showline", true);
         xAxis.SetValue("zerolinewidth",2);
         
         LinearAxis yAxis = new LinearAxis();
-        yAxis.SetValue("title", "User-defined types");
+        yAxis.SetValue("title", "");
         yAxis.SetValue("zerolinecolor", "#ffff");
         yAxis.SetValue("gridcolor", "#ffff");
         yAxis.SetValue("showline", true);
@@ -107,6 +110,8 @@ public static class Report
         layout.SetValue("title", "Clusters Relationships");
         layout.SetValue("plot_bgcolor", "#e5ecf6");
         layout.SetValue("showlegend", true);
+        layout.SetValue("width", 900);
+        layout.SetValue("height", 720);
 
         var chart = Chart.Combine(scatterPlots);
         chart.WithLayout(layout);
